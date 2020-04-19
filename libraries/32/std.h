@@ -1,50 +1,23 @@
-extern print
-extern exit
-extern intToString
-extern strlen
-%macro pushall 0
-    push rax
-    push rbx
-    push rcx
-    push rdx
-    push rsi
-    push rdi
-%endmacro
-%macro popall 0
-    pop rax
-    pop rbx
-    pop rcx
-    pop rdx
-    pop rsi
-    pop rdi
-%endmacro
-%macro write_string 2 
-    mov rax,%1
-    mov rbx,%2
-    call print
-%endmacro
-%macro write_string 1
-    push %1 
-    mov rax,%1
-    call strlen
-    mov rbx,rax
-    pop rax
-    call print
-%endmacro
-%macro write_number 1 
-    mov rax,[%1]
-    sub rsp,8
-    mov rbx,rsp
-    call intToString
-    sub rbx,rsp
-    write_string rsp,rbx
-    add rsp,8
-%endmacro
+void exit();
+int intToString(char * buffer, int numero);
+int print(const char * buffer);
+void nprint(char * buffer, int size);
+int strlen(char * buffer);
+int factorial(int num);
+void swap( void * dir1, void * dir2, int size);
+void integerRecursiveBubbleSort(int * arr, int size);
 
-%macro write_character 1
-    sub rsp,1
-    mov byte [rsp],%1
-    write_string rsp, 1
-    add rsp,1    
-%endmacro
+//flags
+#define	O_RDONLY	0x0000		/* open for reading only */
+#define	O_WRONLY	0x0001		/* open for writing only */
+#define	O_RDWR		0x0002		/* open for reading and writing */
+#define	O_APPEND	0x400		/* set append mode */
+#define	O_CREAT		0x40		/* create if nonexistant */
+#define	O_EXCL		0x80	/* error if already exists */
 
+int fopen(char * path, int flags);
+int fclose(int fd);
+int fread(int fd, void *buf, int count);
+int fwrite(int fd, void *buf, int count);
+int fprintf(int fd, int buffSize, char * format,...);
+int printf(char * format,...);
