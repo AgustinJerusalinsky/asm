@@ -18,9 +18,12 @@ GLOBAL fopen ; int fopen(char * path, int flags);
 GLOBAL fclose ; int fclose(int fd);
 GLOBAL fread ; int fread(int fd, void *buf, int count);
 GLOBAL fwrite ; int fwrite(int fd, void *buf, int count);
-GLOBAL fprintf ;int fprintf(int fd, int buffSize, char * format,...)
-GLOBAL printf ;int fprintf(char * format,...)
-
+GLOBAL fprintf ;int fprintf(int fd, int buffSize, char * format,...);
+GLOBAL printf ;int fprintf(char * format,...);
+GLOBAL fork ;int fork();
+GLOBAL getpid ;int getpid();
+GLOBAL getStackPointer ;void * getStackPointer();
+GLOBAL sleep ;int sleep(int seconds, long nanoseconds);
 section .text
 exit:
     mov eax, 1		; ID del Syscall EXIT
@@ -302,6 +305,31 @@ printf: ;int printf(char * format,...)
     push 1
     push eax
     jmp fprintf
+
+getStackPointer: ;void * getStackPointer()
+    mov eax,esp
+    ret
+getpid: ; int getpid()
+    mov eax,20
+    int 80h
+    ret
+fork: ; int fork()
+    mov eax,2
+    int 80h
+    ret
+sleep: ;int sleep(int seconds, long nanoseconds);
+    push ebp
+    mov ebp,esp
+    push ebx
+    mov eax,162
+    mov ebx ,ebp
+    add ebx,8
+    mov ecx,0
+    int 80h
+    pop ebx
+    pop ebp
+    ret
+
 
 newFunction:
 newFunction:

@@ -21,3 +21,7 @@ int fread(int fd, void *buf, int count);
 int fwrite(int fd, void *buf, int count);
 int fprintf(int fd, int buffSize, char * format,...);
 int printf(char * format,...);
+int fork();
+int getpid();
+void * getStackPointer();
+int sleep(int seconds, long nanoseconds);
