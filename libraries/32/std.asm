@@ -20,6 +20,7 @@ GLOBAL fread ; int fread(int fd, void *buf, int count);
 GLOBAL fwrite ; int fwrite(int fd, void *buf, int count);
 GLOBAL fprintf ;int fprintf(int fd, int buffSize, char * format,...);
 GLOBAL printf ;int fprintf(char * format,...);
+GLOBAL fseek: ;int lseek(int fd, int offset, int whence);
 GLOBAL fork ;int fork();
 GLOBAL getpid ;int getpid();
 GLOBAL getStackPointer ;void * getStackPointer();
