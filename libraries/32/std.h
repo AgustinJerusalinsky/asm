@@ -25,3 +25,4 @@ int fork();
 int getpid();
 void * getStackPointer();
 int sleep(int seconds, long nanoseconds);
+void cpuid(char * buffer);
