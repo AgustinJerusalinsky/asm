@@ -25,7 +25,7 @@ GLOBAL fork ;int fork();
 GLOBAL getpid ;int getpid();
 GLOBAL getStackPointer ;void * getStackPointer();
 GLOBAL sleep ;int sleep(int seconds, long nanoseconds);
-GLOBAL cpuid ;void cpuid(char * buffer);
+GLOBAL getcpuid ;void getcpuid(char * buffer);
 section .text
 exit:
     mov eax, 1		; ID del Syscall EXIT
@@ -333,7 +333,7 @@ sleep: ;int sleep(int seconds, long nanoseconds);
     ret
 
 
-cpuid: ;void cpuid(char * buffer);
+getcpuid: ;void cpuid(char * buffer);
     push ebp
     mov ebp,esp
     push ebx
